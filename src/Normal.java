@@ -2,7 +2,7 @@ public class Normal {
     Vector normal;
     Point point;
 
-    Normal(Plane plane){
+    Normal(Plane plane, Point point){
         double dotX = - plane.getD() / plane.getA();
         Point pointX = new Point(dotX, 0, 0);
         double dotY = - plane.getD() / plane.getB();
@@ -15,8 +15,16 @@ public class Normal {
 
         normal = firstV.crossProduct(secondV);
         normal = normal.div(normal.length());
+        if (point == null)
+            this.point = new Point(pointX);
+        else
+            this.point = point;
+    }
 
-        point = new Point(pointX);
+    Normal(Sphere sphere, Point point) {
+        this.normal = new Vector(sphere.getCenter(), point);
+        this.normal = this.normal.div(this.normal.length());
+        this.point = point;
     }
 
     public Vector getNormal() {

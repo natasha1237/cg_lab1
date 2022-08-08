@@ -15,7 +15,7 @@ public class Ray {
 
     Ray(Point source, Vector direction) {
         this.source = new Point(source);
-        this.direction = new Vector(direction.getVectorized());
+        this.direction = new Vector(source, direction.getVectorized());
     }
 
     public Point getSource() {

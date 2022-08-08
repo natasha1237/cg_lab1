@@ -21,6 +21,14 @@ public class Point {
         z = point.z;
     }
 
+    Point(String sPoint) {
+        sPoint = sPoint.substring(1, sPoint.length() - 1);
+        String[] coordinates = sPoint.split("; ");
+        x = Double.valueOf(coordinates[0]);
+        y = Double.valueOf(coordinates[1]);
+        z = Double.valueOf(coordinates[2]);
+    }
+
     public double getX() {
         return x;
     }
@@ -70,6 +78,21 @@ public class Point {
         return point;
     }
 
+    public Point mul(double d) {
+        Point point = new Point(this);
+        point.x *= d;
+        point.y *= d;
+        point.z *= d;
+        return point;
+    }
+
+    public Point sub(Point point) {
+        double x = this.x-point.x;
+        double y = this.y-point.y;
+        double z = this.z-point.z;
+        return new Point(x, y, z);
+    }
+
     public double distanceSquared(Point point) {
         return (x-point.x) * (x-point.x) + (y-point.y) * (y-point.y) + (z-point.z) * (z-point.z);
     }
@@ -84,6 +107,16 @@ public class Point {
 
     public double distance(double x, double y, double z) {
         return Math.sqrt(distanceSquared(x, y, z));
+    }
+
+    public Point nearest(Point[] points) {
+        // найближча точка до поточної
+        Point nP = points[0];
+        for (Point point: points) {
+            if (distance(point) < distance(nP))
+                nP = point;
+        }
+        return nP;
     }
 
     public boolean equal(Point point) {

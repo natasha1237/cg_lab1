@@ -58,11 +58,16 @@ public class Vector {
         return new Vector(rV);
     }
 
+    public Vector doubleProduct(double d) {
+        Point newEnd = this.vectorEnd.mul(d);
+        return new Vector(this.vectorStart, newEnd);
+    }
+
     public double length() {
         return vectorStart.distance(vectorEnd);
     }
 
-    public Vector sum(Vector vector) {
+    public Vector add(Vector vector) {
         Point tV = getVectorized();
         Point vV = vector.getVectorized();
         Point rV = new Point(tV.x+vV.x, tV.y+vV.y, tV.z+vV.z);

@@ -12,6 +12,13 @@ public class Plane {
         this.d = 0;
     }
 
+    Plane(Plane plane) {
+        a = plane.a;
+        b = plane.b;
+        c = plane.c;
+        d = plane.d;
+    }
+
     Plane(double a, double b, double c, double d) {
         this.a = a;
         this.b = b;
@@ -36,7 +43,7 @@ public class Plane {
     }
 
     public Normal getNormal() {
-        return new Normal(this);
+        return new Normal(this, null);
     }
 
     public boolean containsPoint(Point point) {
@@ -47,19 +54,33 @@ public class Plane {
         return containsPoint(vector.getVectorStart()) && containsPoint(vector.getVectorEnd());
     }
 
-    public String typeIntersect(Ray ray) {
+    public String intersect(Ray ray) {
         Vector normal = getNormal().getNormal();
         Vector direction = ray.getDirection();
         double castResult = normal.dotProduct(direction);
         if (Math.abs(castResult) < 1e-6) {
             if (containsVector(direction))
-                return "line";
+                return ray.direction.getVectorEnd().toString();
             else
-                return "none";
+                return "None";
         }
-        else
-            return "point";
+        else {
+            Vector pl = new Vector(getNormal().getPoint().sub(direction.getVectorStart()));
+            double d = pl.dotProduct(normal) / direction.dotProduct(normal);
+            if (d >= 1)
+                    return ray.getDirection().doubleProduct(d).getVectorEnd().toString();
+            else
+                // випадок для перетину, коли площина перед екраном
+                return "None";
+
+        }
     }
 
-
+    public Point pointIntersect(Ray ray) {
+        Vector normal = getNormal().getNormal();
+        Vector direction = ray.getDirection();
+        Vector pl = new Vector(getNormal().getPoint().sub(direction.getVectorStart()));
+        double d = pl.dotProduct(normal) / direction.dotProduct(normal);
+        return ray.getDirection().doubleProduct(d).getVectorEnd();
+    }
 }
