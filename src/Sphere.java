@@ -30,7 +30,7 @@ public class Sphere {
         Vector k = new Vector(center, ray.source);
         double a = d.dotProduct(d);
         double b = 2 * k.dotProduct(d);
-        double c = k.dotProduct(k);
+        double c = k.dotProduct(k) - radius*radius;
 
         double D = b*b - 4*a*c;
 

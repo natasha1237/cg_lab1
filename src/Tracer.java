@@ -4,8 +4,8 @@ public class Tracer {
     Camera camera;
     Screen screen;
     DirectedLightSource lightSource;
-    ArrayList<Sphere> spheres;
-    ArrayList<Plane> planes;
+    ArrayList<Sphere> spheres = new ArrayList<>();
+    ArrayList<Plane> planes = new ArrayList<>();
 
     Tracer() {
         camera = new Camera();
@@ -102,8 +102,8 @@ public class Tracer {
     public void printTraceResult() {
         for (int i = 0; i < 20; ++i) {
             for (int j = 0; j < 20; ++j)
-                System.out.println(screen.consoleScreen.get(i).get(j));
-            System.out.println('\n');
+                System.out.print(screen.consoleScreen.get(i).get(j));
+            System.out.println();
         }
     }
 

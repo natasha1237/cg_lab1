@@ -82,9 +82,9 @@ public class Vector {
     }
 
     public Vector div(double d) {
-        Point vE = vectorEnd.div(d);
+        Point vE = getVectorized().div(d);
         Point vS = new Point(vectorStart);
-        return new Vector(vS, vE);
+        return new Vector(vS, vE.add(vS));
     }
 
     public void move(Point dPoint) {

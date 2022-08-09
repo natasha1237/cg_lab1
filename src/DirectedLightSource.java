@@ -2,7 +2,8 @@ public class DirectedLightSource {
     Vector light;
 
     DirectedLightSource() {
-        this.light = new Vector(new Point(1, 0, 0));
+        light = new Vector(new Point(-1, -1, -1));
+        light = new Vector(light.getVectorized().div(light.length()));
     }
     DirectedLightSource(Vector light) {
         this.light = new Vector(light.getVectorized().div(light.length()));

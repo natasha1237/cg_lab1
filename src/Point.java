@@ -70,6 +70,12 @@ public class Point {
         z += dz;
     }
 
+    public Point add(Point point) {
+        Point rP = new Point(this);
+        rP.move(point);
+        return rP;
+    }
+
     public Point div(double d) {
         Point point = new Point(this);
         point.x /= d;

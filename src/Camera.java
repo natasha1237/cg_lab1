@@ -7,7 +7,7 @@ public class Camera{
     Camera() {
         camera = new Point();
         Screen screen = new Screen();
-
+        rays = new ArrayList<>();
         for (int i = 0; i < 20; ++i) {
             rays.add(new ArrayList<Ray>());
             for (int j = 0; j < 20; ++j)
@@ -18,6 +18,7 @@ public class Camera{
 
     Camera(Screen screen) {
         camera = new Point();
+        rays = new ArrayList<>();
         for (int i = 0; i < 20; ++i) {
             rays.add(new ArrayList<Ray>());
             for (int j = 0; j < 20; ++j)
@@ -27,6 +28,7 @@ public class Camera{
 
     Camera(Point camera, Screen screen) {
         this.camera = new Point(camera);
+        rays = new ArrayList<>();
         for (int i = 0; i < 20; ++i) {
             rays.add(new ArrayList<Ray>());
             for (int j = 0; j < 20; ++j)
